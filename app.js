@@ -7,7 +7,7 @@ var bodyParser=require('body-parser');
 
 var app = express();
 
-
+//
 app.use('/public',express.static(__dirname+'/public'));
 
 //			模板名称后缀	模板解析方法
