@@ -30,7 +30,7 @@ app.use('/admin', require('./routers/admin'));
 app.use('/api', require('./routers/api'));
 app.use('/', require('./routers/main'));
 
-app.listen(8081);
+// app.listen(8081);
 
 
 // app.get('/', function(req, res, next){
@@ -41,12 +41,12 @@ app.listen(8081);
 // 	//res.send('<h1>welcome</h1>')
 // })
 
-// mongoose.connect('mongodb://localhost:27017/blog', function(err){
-// 	if(err){
-// 		console.log('database connect err');
-// 	}
-// 	else{
-// 		console.log('database connect success');
-// 		app.listen(8081);
-// 	}
-// });
+mongoose.connect('mongodb://localhost:27017/blog', function(err){
+	if(err){
+		console.log('database connect err');
+	}
+	else{
+		console.log('database connect success');
+		app.listen(8081);
+	}
+});

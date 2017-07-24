@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+//得到需要操作的模型
+var User = require('../models/User');
+
 //注册逻辑
 //	用户名不为空
 //	密码不能为空
@@ -45,8 +48,31 @@ router.post('/user/register', function(req, res, next){
 		return;
 	}
 
-	responseData.message = '注册成功';
-	res.json(responseData);
+	User.findOne({
+		username: username
+	}).then(function(userInfo){
+		if(userInfo){
+
+			console.log(userInfo)
+			responseData.code = 4;
+			responseData.message = '用户名已经被注册';
+			res.json(responseData);
+			return;
+		}
+		var user = new User({
+			username: username,
+			password: password
+		});
+		return user.save();
+	}).then(function(newUserInfo){
+		console.log(newUserInfo);
+		//responseData.code = 5;
+		responseData.message = '用户名注册成功';
+		res.json(responseData);
+	});
+
+	// responseData.message = '注册成功';
+	// res.json(responseData);
 	//res.send('User');
 });
 

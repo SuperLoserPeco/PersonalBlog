@@ -25,8 +25,39 @@ $(function(){
 			},
 			dataType: 'json',
 			success: function(result){
-				console.log(result)
+				console.log(result);
+				$registerBox.find('.colWarning').html(result.message);
+
+				if(!result.code){
+					setTimeout(function(){
+						$loginBox.show();
+						$registerBox.hide();
+					}, 1000);
+				}
 			}
 		});
-	})
+	})	
+
+	$loginBox.find('button').on('click', function(){
+		$.ajax({
+			type: 'post',
+			url: '/api/user/login',
+			data: {
+				username: $loginBox.find('[name="username"]').val(),
+				password: $loginBox.find('[name="password"]').val()
+			},
+			dataType: 'json',
+			success: function(result){
+				console.log(result);
+				$registerBox.find('.colWarning').html(result.message);
+
+				if(!result.code){
+					setTimeout(function(){
+						$loginBox.show();
+						$registerBox.hide();
+					}, 1000);
+				}
+			}
+		});
+	});
 })
