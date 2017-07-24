@@ -10,6 +10,7 @@ var app = express();
 //
 app.use('/public',express.static(__dirname+'/public'));
 
+//配置 末班引擎
 //			模板名称后缀	模板解析方法
 app.engine('html', swig.renderFile);
 //		固定值		模板存放目录
@@ -17,11 +18,16 @@ app.set('views', './views');
 //注册所使用的模板引擎
 //		固定值
 app.set('view engine', 'html')
+
+
 //取消缓存 可以实时更改模板内容
 swig.setDefaults({cache: false});
 
 
+app.use(bodyParser.urlencoded({extended:true}))
+
 app.use('/admin', require('./routers/admin'));
+app.use('/api', require('./routers/api'));
 app.use('/', require('./routers/main'));
 
 app.listen(8081);
