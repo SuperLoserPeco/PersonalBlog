@@ -5,8 +5,12 @@ main {
     margin: 0; 
 }
 
-/*input {
-	position:absolute;
-    top:30px;
-    right:5px;
-}*/
+span.colDark{
+	display:inline-block;
+	width: 0px;
+}
+input {
+	position:relative;
+/*    top:30px;*/
+    left:130px;
+}
