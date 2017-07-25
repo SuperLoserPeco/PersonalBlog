@@ -76,4 +76,33 @@ router.post('/user/register', function(req, res, next){
 	//res.send('User');
 });
 
+router.post('/user/login', function(req, res){
+	var username = req.body.username;
+	var password = req.body.password;
+	if (username == '' || password == ''){
+		responseData.code = 1;
+		responseData.message = "用户名和密码不能为空";
+		res.json(responseData);
+		return;
+	}
+
+	User.findOne({
+		username: username,
+		password: password
+	}).then(function(userInfo){
+		if(!userInfo){
+			responseData.code = 2;
+			responseData.message = "用户名或密码错误";
+			res.json(responseData)
+			return;
+		}
+
+		responseData.message = "登入成功"
+		res.json(responseData)
+		return;
+	})
+
+
+})
+
 module.exports = router;

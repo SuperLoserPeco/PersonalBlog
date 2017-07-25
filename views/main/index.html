@@ -15,17 +15,17 @@
  
 <main class="clear">
 	<div class="mainRight">
-		<div class="rightBox">
+		<div class="rightBox" id="userInfo">
 			<div class="title"><span>user infomation</span></div>
-			<p><span class="colDark">admin</span></p>
-			<p><span class="colDanger">you are manager, <a href="/admin">click this to manager blank</a></span></p>
-			<p><span class="colDark"><a href="/logout" id="logoutBtn">logout</a></span></p>
+			<p><span class="colDark username">admin</span></p>
+			<p><span class="colDanger info">you are manager, <a href="/admin">click this to manager blank</a></span></p>
+			<p><span class="colDark logout"><a href="/logout">logout</a></span></p>
 		</div>
 
 		<div class="rightBox" id="loginBox">
 			<div class="title"><span>login</span></div>
-			<div class="line"><span class="colDark">user:</span><input type="text" /><em></em></div>
-			<div class="line"><span class="colDark">password:</span><input type="password" /><em></em></div>
+			<div class="line"><span class="colDark">user:</span><input name="username" type="text" /><em></em></div>
+			<div class="line"><span class="colDark">password:</span><input name="password" type="password" /><em></em></div>
 			<div class="line"><span class="colDark"></span><button>login</button></div>
 			<p class="textRight">not register?<a href="javascript:;" class="colMint">register</a></p>
 			<p class="colWarning textCenter"></p>
