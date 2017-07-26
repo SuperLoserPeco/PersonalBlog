@@ -5,6 +5,9 @@ var mongoose = require('mongoose');
 //加载body-parser,用来处理post提交过来的数据
 var bodyParser=require('body-parser');
 
+
+var Cookies = require('cookies');
+
 var app = express();
 
 //
@@ -25,6 +28,26 @@ swig.setDefaults({cache: false});
 
 
 app.use(bodyParser.urlencoded({extended:true}))
+
+// app.use(function(req, res, next){
+// 	req.cookies = new Cookies(req, res);
+
+// 	req.userInfo = {}
+
+// 	//解析登入用户的信息
+// 	if (req.cookies.get('userInfo')){
+// 		try{
+// 			req.userInfo = JSON.parse(req.cookies.get('userInfo'));
+// 		}
+// 		catch(e){
+// 		}
+// 	};
+
+// 	console.log(req.cookies.get('userInfo'));
+// 	console.log("req.cookies.get('userInfo')");
+
+// 	next();
+// });
 
 app.use('/admin', require('./routers/admin'));
 app.use('/api', require('./routers/api'));

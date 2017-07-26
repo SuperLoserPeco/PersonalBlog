@@ -54,6 +54,7 @@ $(function(){
 
 				if(!result.code){
 					setTimeout(function(){
+						console.log("wocao zenme huizheyang")
 						$loginBox.hide();
 						$userInfo.show();
 
