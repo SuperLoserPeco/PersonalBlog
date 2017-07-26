@@ -2,6 +2,7 @@
 $(function(){
 	var $loginBox = $('#loginBox');
 	var $registerBox = $('#registerBox');
+	var $userInfo = $('#userInfo');
 
 	$loginBox.find('a').on('click', function(){
 		$registerBox.show();
@@ -49,12 +50,15 @@ $(function(){
 			dataType: 'json',
 			success: function(result){
 				console.log(result);
-				$registerBox.find('.colWarning').html(result.message);
+				$loginBox.find('.colWarning').html(result.message);
 
 				if(!result.code){
 					setTimeout(function(){
-						$loginBox.show();
-						$registerBox.hide();
+						$loginBox.hide();
+						$userInfo.show();
+
+						$userInfo.find('.username').html(result.userInfo.username)
+						$userInfo.find('.info').html('weilcome to my blog')
 					}, 1000);
 				}
 			}

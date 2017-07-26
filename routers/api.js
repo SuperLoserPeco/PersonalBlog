@@ -98,6 +98,10 @@ router.post('/user/login', function(req, res){
 		}
 
 		responseData.message = "登入成功"
+		responseData.userInfo = {
+			id: userInfo._id,
+			username: userInfo.username
+		}
 		res.json(responseData)
 		return;
 	})
