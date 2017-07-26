@@ -29,25 +29,25 @@ swig.setDefaults({cache: false});
 
 app.use(bodyParser.urlencoded({extended:true}))
 
-// app.use(function(req, res, next){
-// 	req.cookies = new Cookies(req, res);
+app.use(function(req, res, next){
+	req.cookies = new Cookies(req, res);
 
-// 	req.userInfo = {}
+	req.userInfo = {}
 
-// 	//解析登入用户的信息
-// 	if (req.cookies.get('userInfo')){
-// 		try{
-// 			req.userInfo = JSON.parse(req.cookies.get('userInfo'));
-// 		}
-// 		catch(e){
-// 		}
-// 	};
+	//解析登入用户的信息
+	if (req.cookies.get('userInfo')){
+		try{
+			req.userInfo = JSON.parse(req.cookies.get('userInfo'));
+		}
+		catch(e){
+		}
+	};
 
-// 	console.log(req.cookies.get('userInfo'));
-// 	console.log("req.cookies.get('userInfo')");
+	console.log(req.cookies.get('userInfo'));
+	console.log("req.cookies.get('userInfo')");
 
-// 	next();
-// });
+	next();
+});
 
 app.use('/admin', require('./routers/admin'));
 app.use('/api', require('./routers/api'));

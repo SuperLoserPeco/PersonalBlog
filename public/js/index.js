@@ -7,11 +7,13 @@ $(function(){
 	$loginBox.find('a').on('click', function(){
 		$registerBox.show();
 		$loginBox.hide();
+		$userInfo.hide();
 	});
 
 	$registerBox.find('a').on('click', function(){
 		$loginBox.show();
 		$registerBox.hide();
+		$userInfo.hide();
 	});
 
 
