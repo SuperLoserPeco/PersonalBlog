@@ -7,13 +7,11 @@ $(function(){
 	$loginBox.find('a').on('click', function(){
 		$registerBox.show();
 		$loginBox.hide();
-		$userInfo.hide();
 	});
 
 	$registerBox.find('a').on('click', function(){
 		$loginBox.show();
 		$registerBox.hide();
-		$userInfo.hide();
 	});
 
 
@@ -67,6 +65,18 @@ $(function(){
 			}
 		});
 	});
+
+	$('#logout').on('click', function(){
+		$.ajax({
+			url: 'api/user/logout',
+			success: function(result){
+				if(!result.code){
+					window.location.reload();
+				}
+				
+			}
+		});
+	})
 
 
 })
