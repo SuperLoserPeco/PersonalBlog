@@ -10,6 +10,7 @@ var Cookies = require('cookies');
 
 var app = express();
 
+var User = require('./models/User');
 //
 app.use('/public',express.static(__dirname+'/public'));
 
@@ -38,15 +39,26 @@ app.use(function(req, res, next){
 	if (req.cookies.get('userInfo')){
 		try{
 			req.userInfo = JSON.parse(req.cookies.get('userInfo'));
+
+			//获取当前登录用户的类型
+			User.findById(req.userInfo.id).then(function(userInfo){
+				req.userInfo.isAdmin = Boolean(userInfo.isAdmin);
+				next();
+			})
 		}
 		catch(e){
+			next();
 		}
-	};
 
-	console.log(req.cookies.get('userInfo'));
-	console.log("req.cookies.get('userInfo')");
 
-	next();
+	}else{
+		next();
+	}
+
+	// console.log(req.cookies.get('userInfo'));
+	// console.log("req.cookies.get('userInfo')");
+
+	// next();
 });
 
 app.use('/admin', require('./routers/admin'));

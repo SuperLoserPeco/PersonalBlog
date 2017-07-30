@@ -19,8 +19,12 @@
 		{% if userInfo.id %}
 		<div class="rightBox" id="userInfo">
 			<div class="title"><span>user infomation</span></div>
-			<p><span class="colDark username">admin</span></p>
-			<p><span class="colDanger info">you are manager, <a href="/admin">click this to manager blank</a></span></p>
+			<p><span class="colDark username">{{userInfo.username}}</span></p>
+			{% if userInfo.isAdmin %}
+				<p><span class="colDanger info">you are guanliyuan, <a href="/admin">click this to manager blank</a></span></p>
+			{% else %}
+				<p><span class="colDanger info">you are keren, <a href="/admin">click this to manager blank</a></span></p>
+			{% endif %}
 			<p><span class="colDark"><a href="javascript:;" id="logout">logout</a></span></p>
 		</div>
 		{% else %}
