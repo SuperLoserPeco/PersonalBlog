@@ -251,6 +251,7 @@ router.post('/content/add', function(req, res){
 		})
 		return;
 	}
+	console.log(req.body.TextArea1)
 
 	if(req.body.title == ''){
 		res.render('admin/error', {

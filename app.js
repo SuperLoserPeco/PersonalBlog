@@ -13,6 +13,7 @@ var app = express();
 var User = require('./models/User');
 //
 app.use('/public',express.static(__dirname+'/public'));
+app.use('/ckeditor',express.static(__dirname+'/ckeditor'));
 
 //配置 末班引擎
 //			模板名称后缀	模板解析方法
