@@ -10,12 +10,21 @@
 <table class="table table-hover table-striped">
 	<tr>
 		<th>ID</th>
-		<th>用户名</th>
-		<th>密码</th>
-		<th>是否是管理员</th>
+		<th>分类名称</th>
+		<th>操作</th>
 	</tr>
+	{% for category in categories %}
+	<tr>
+		<th>{{category.id.toString()}}</th>
+		<th>{{category.name}}</th>
+		<th>
+			<a href="/admin/category/edit?id={{category._id.toString()}}">修改</a>
+			<a href="/admin/category/delete?id={{category._id.toString()}}">删除</a>
+		</th>
+	</tr>
+	{% endfor %}
 </table>
 
-{%include 'page.html'%}
+<!-- {%include 'page.html'%} -->
 
 {% endblock %}

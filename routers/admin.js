@@ -55,8 +55,33 @@ router.get('/user', function(req, res, next){
 
 //分类首页
 router.get('/category', function(req, res){
-	res.render('admin/category_index', {
-		userInfo: req.userInfo
+	var page = Number(req.query.page || 1);
+	var limit = 2;
+	var pages = 0;
+
+	console.log("zenme le");
+	Category.count().then(function(count){
+		console.log(count);
+		pages = Math.ceil(count / limit);
+
+		page = Math.min(pages, page);
+		page = Math.max(page, 1);
+
+		var skip = (page - 1) * limit;
+
+		Category.find().then(function(categories){
+		
+			res.render('admin/category_index', {
+				userInfo: req.userInfo,
+				categories: categories,
+
+				// count: count,
+				// pages: pages,
+				// limit: limit,
+
+				// page: page
+			});
+		})
 	})
 })
 
@@ -102,5 +127,94 @@ router.post('/category/add', function(req, res){
 		})
 	});
 })
+
+//分类修改 删除
+router.get('/category/edit', function(req, res){
+	var id = req.query.id || '';
+
+	Category.findOne({
+		_id:id
+	}).then(function(category){
+		if(!category){
+			res.render('admin/error', {
+				userInfo: req.userInfo,
+				message: "分类信息不存在"
+			});
+			return Promise.reject();
+		}else{
+			res.render('admin/category_edit', {
+				userInfo: req.userInfo,
+				category: category
+			});
+		}
+	})
+});
+
+//分类的修改保存
+router.post('/category/edit', function(req, res){
+	var id = req.query.id || '';
+	var name = req.body.name || '';
+
+	Category.findOne({
+		_id:id
+	}).then(function(category){
+		if(!category){
+			res.render('admin/error', {
+				userInfo: req.userInfo,
+				message: "分类信息不存在"
+			});
+			return Promise.reject();
+		}else{
+			//未作任何修改
+			if(name == category.name){
+				res.render('admin/success', {
+					userInfo: req.userInfo,
+					message: "修改成功",
+					url: '/admin/category'
+				});
+			}else{
+				return Category.findOne({
+					_id: {$ne: id},
+					name: name
+				})
+			}
+			//要修改的分类名字是否已经存在
+		}
+	}).then(function(sameCategory){
+		if(sameCategory){
+			res.render('admin/error', {
+				userInfo: req.userInfo,
+				message: "已存在同名分类"
+			});
+			return Promise.reject();
+		}else{
+			return Category.update({
+				_id: id
+			},{
+				name: name
+			});
+		}
+	}).then(function(){
+		res.render('admin/success', {
+			userInfo: req.userInfo,
+			message: "修改成功",
+			url: '/admin/category'
+		})
+	})
+
+});
+
+router.get('/category/delete', function(req, res){
+	var id = req.query.id || '';
+	Category.remove({
+		_id: id
+	}).then(function(){
+		res.render('admin/success', {
+			userInfo: req.userInfo,
+			message: "删除成功",
+			url: '/admin/category'
+		})
+	})
+});
 
 module.exports = router;
