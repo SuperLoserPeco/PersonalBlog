@@ -3,6 +3,7 @@ var router = express.Router();
 
 var User = require('../models/User');
 var Category = require('../models/Category');
+var Content = require('../models/Content');
 
 //身份驗證
 router.use(function(req, res, next){
@@ -69,7 +70,9 @@ router.get('/category', function(req, res){
 
 		var skip = (page - 1) * limit;
 
-		Category.find().then(function(categories){
+		//1		生序
+		//-1	降序
+		Category.find().sort({_id: -1}).then(function(categories){
 		
 			res.render('admin/category_index', {
 				userInfo: req.userInfo,
@@ -216,5 +219,60 @@ router.get('/category/delete', function(req, res){
 		})
 	})
 });
+
+
+router.get('/content', function(req, res){
+	console.log("to this")
+	Content.count().then(function(count){
+		Content.find().sort({_id: -1}).then(function(contents){
+			console.log('contents')
+			res.render('admin/content_index', {
+				userInfo: req.userInfo,
+				contents: contents
+			});
+		})
+	})
+});
+
+router.get('/content/add', function(req, res){
+	Category.find().sort({_id: -1}).then(function(categories){
+		res.render('admin/content_add', {
+			userInfo: req.userInfo,
+			categories: categories
+		})
+	})
+});
+
+router.post('/content/add', function(req, res){
+	if(req.body.category == ''){
+		res.render('admin/error', {
+			userInfo: req.userInfo,
+			message: '目录不能为空'
+		})
+		return;
+	}
+
+	if(req.body.title == ''){
+		res.render('admin/error', {
+			userInfo: req.userInfo,
+			message: '标题不能为空'
+		})
+		return;
+	}
+
+	new Content({
+		category: req.body.category,
+		title: req.body.title,
+		description: req.body.description,
+		content: req.body.content
+	}).save().then(function(rs){
+		res.render('admin/success', {
+			userInfo: req.userInfo,
+			message: '内容保存成功'
+		})
+
+	});
+});
+
 
 module.exports = router;

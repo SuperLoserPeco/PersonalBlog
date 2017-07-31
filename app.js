@@ -49,16 +49,9 @@ app.use(function(req, res, next){
 		catch(e){
 			next();
 		}
-
-
 	}else{
 		next();
 	}
-
-	// console.log(req.cookies.get('userInfo'));
-	// console.log("req.cookies.get('userInfo')");
-
-	// next();
 });
 
 app.use('/admin', require('./routers/admin'));
