@@ -55,11 +55,12 @@ $(function(){
 				if(!result.code){
 					setTimeout(function(){
 						console.log("wocao zenme huizheyang")
-						$loginBox.hide();
-						$userInfo.show();
+						window.location.reload();
+						// $loginBox.hide();
+						// $userInfo.show();
 
-						$userInfo.find('.username').html(result.userInfo.username)
-						$userInfo.find('.info').html('weilcome to my blog')
+						// $userInfo.find('.username').html(result.userInfo.username)
+						// $userInfo.find('.info').html('weilcome to my blog')
 					}, 1000);
 				}
 			}

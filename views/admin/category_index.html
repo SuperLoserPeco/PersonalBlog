@@ -6,7 +6,7 @@
   <li class="active">Data</li>
 </ol>
 
-<h3></h3>
+<h3>分类列表</h3>
 <table class="table table-hover table-striped">
 	<tr>
 		<th>ID</th>
@@ -14,18 +14,6 @@
 		<th>密码</th>
 		<th>是否是管理员</th>
 	</tr>
-	{% for user in users %}
-	<tr>
-		<th>{{user.id}}</th>
-		<th>{{user.username}}</th>
-		<th>{{user.password}}</th>
-		<th>
-			{%if user.isAdmin%}
-			是
-			{%endif%}
-		</th>
-	</tr>
-	{% endfor %}
 </table>
 
 {%include 'page.html'%}
