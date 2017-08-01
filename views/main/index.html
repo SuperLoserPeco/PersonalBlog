@@ -8,15 +8,13 @@
 <script src="/public/js/index.js"></script>
 </head>
 <body>
- 
-<!-- <h1>我的第一个标题</h1>
- 
-<p>我的第一个段落。fsdfs</p> -->
 <nav>
 	<div class="menu">
-		{%for category in categories%}
-		<a href="/">{{category.name}}</a>
-		{%endfor%}
+		<ul>		
+			{%for category in categories%}
+			<li><a href="/">{{category.name}}</a></li>
+			{%endfor%}
+		</ul>
 	</div>
 </nav>
  

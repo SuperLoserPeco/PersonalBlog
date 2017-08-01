@@ -1,10 +1,23 @@
-main {
+body {
+    width: 900px;
+    margin: 10px auto; /*居中*/
+    border: 10px solid green;
+    padding: 45px;
+    
+}
+
+/*main {
 	position:relative;
     width: 280px;
-    left: 830px;
+    left: 0px;
     padding: 10px;
     border: 5px solid gray;
     margin: 0; 
+}*/
+div.mainRight{
+    width: 300px;
+    float: right;
+    border: 5px solid gray;
 }
 
 span.colDark{
@@ -15,4 +28,39 @@ input {
 	position:relative;
 /*    top:30px;*/
     left:130px;
+}
+
+.menu{
+    margin: 10px auto; /*居中*/
+}
+
+.menu ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+}
+
+.menu li{
+    float:left;
+}
+
+div.menu a:link,a:visited{
+    display: block;
+    width:120px;
+    font-weight:bold;
+    color:#FFFFFF;
+    background-color:#98bf21;
+    text-align:center;
+    padding:4px;
+    text-decoration:none;
+    text-transform:uppercase;
+}
+
+div.menu a:hover{
+    background-color:#7A991A;
+}
+
+div.menu a:active{
+    background-color:#7A991A;
 }

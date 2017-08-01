@@ -5,9 +5,25 @@ module.exports = new mongoose.Schema({
 	category: {
 		type: mongoose.Schema.Types.ObjectId,
 		//饮用
-		ref: 'Content'
+		ref: 'Category'
 	},
 	title: String,
+	user: {
+		type: mongoose.Schema.Types.ObjectId,
+		//饮用
+		ref: 'User'
+	},
+	addTime: {
+		type: Date,
+		default: new Date()
+	},
+
+	//阅读量
+	views: {
+		type: Number,
+		default: 0
+	},
+
 	description: {
 		type: String,
 		default: ''
