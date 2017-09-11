@@ -48,22 +48,35 @@ div.menu a.categorylink:active{
 }*/
 
 .clear{
-    width: 900px;
-/*    margin-top: 50px;*/
+    width: 1200px;
     padding-top: 30px;
+    margin: 20px auto;
+}
+
+div.mainLeft{
+    width: 800px;
+    float: left;
+}
+div.mainLeft .listBox{
+    border: 1px solid black;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+div.mainLeft .pager li{
+    width: 230px;
+    list-style-type: none;
+    float: left;
     margin: auto;
 }
 
 div.mainRight{
     float: right;
 }
-
 div.mainRight .rightBox{
     width: 300px;
     padding: 15px;
     border: 2px solid gray;
 }
-
 div.rightBox .title span{
     text-align:center;
     display: inline-block;

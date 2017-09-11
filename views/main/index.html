@@ -19,6 +19,43 @@
 <!-- </nav> -->
  
 <main class="clear">
+	<div class="mainLeft">
+		{%for content in contents%}
+		<div class="listBox">
+			<h3>{{content.title}}</h1>
+			<p class="colDefault">
+				作者：<span class="colInfo">{{content.username}}</span></br>
+				时间：<span class="colInfo">{{content.addTime|date('Y年m月d日 H:i:s')}}</span></br>
+				阅读：<span class="colInfo">0</span></br>
+				评论：<span class="colInfo">0</span></br>
+			</p>
+			<dfn><p>0</p></dfn>
+			<div class="function"><a href="#">阅读全文</a></div>
+		</div>
+		{%endfor%}
+		<div class="pager">
+			<ul class="clear">
+				<li class="previous">
+					{%if page <= 1%}
+						<a href="javascript:;">没有上一页</a>
+					{%else%}
+						<a href="/?page={{page-1}}">上一页</a>
+					{%endif%}
+				</li>
+				<li>
+					<strong>{{page}} / {{pages}}</strong>
+				</li>
+				<li class="next">
+					{%if page >= pages%}
+						<a href="javascript:;">没有下一页</a>
+					{%else%}
+						<a href="/?page={{page+1}}">下一页</a>
+					{%endif%}
+				</li>
+			</ul>
+		</div>
+	</div>
+
 	<div class="mainRight">
 
 		{% if userInfo.id %}
@@ -52,7 +89,7 @@
 		</div>
 		{% endif %}
 	</div>
-	<div class="wenzi">
+<!-- 	<div class="wenzi" display="none">
 	  <p>Some text some text some text some text..</p>
 	  <p>Some text some text some text some text..</p>
 	  <p>Some text some text some text some text..</p>
@@ -93,7 +130,7 @@
 	  <p>Some text some text some text some text..</p>
 	  <p>Some text some text some text some text..</p>
 	  <p>Some text some text some text some text..</p>
-	 </div>
+	 </div> -->
 </main>
 
 

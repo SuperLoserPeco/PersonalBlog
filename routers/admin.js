@@ -220,11 +220,12 @@ router.get('/category/delete', function(req, res){
 	})
 });
 
-
 router.get('/content', function(req, res){
 	console.log("to this")
 	Content.count().then(function(count){
-		Content.find().sort({_id: -1}).populate(['category', 'user']).then(function(contents){
+		Content.find().sort({_id: -1}).populate(['category', 'user']).sort({
+			addTime: -1
+		}).then(function(contents){
 			console.log(contents)
 			res.render('admin/content_index', {
 				userInfo: req.userInfo,
