@@ -1,51 +1,26 @@
 body {
-    width: 900px;
-    margin: 10px auto; /*居中*/
-    border: 10px solid green;
-    padding: 45px;
-    
+    margin: 0;
 }
 
-/*main {
-	position:relative;
-    width: 280px;
-    left: 0px;
-    padding: 10px;
-    border: 5px solid gray;
-    margin: 0; 
-}*/
-div.mainRight{
-    width: 300px;
-    float: right;
-    border: 5px solid gray;
+div.menu{
+    overflow: hidden;
+    background-color: #98bf21;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
 }
-
-span.colDark{
-	display:inline-block;
-	width: 0px;
-}
-input {
-	position:relative;
-/*    top:30px;*/
-    left:130px;
-}
-
-.menu{
-    margin: 10px auto; /*居中*/
-}
-
-.menu ul{
+div.menu ul{
     list-style-type:none;
     margin:0;
     padding:0;
     overflow:hidden;
 }
-
-.menu li{
+div.menu ul li{
     float:left;
 }
 
-div.menu a:link,a:visited{
+div.menu a.categorylink:link,a.categorylink:visited{
     display: block;
     width:120px;
     font-weight:bold;
@@ -56,11 +31,61 @@ div.menu a:link,a:visited{
     text-decoration:none;
     text-transform:uppercase;
 }
-
-div.menu a:hover{
+div.menu a.categorylink:hover{
+    background-color:#7A991A;
+}
+div.menu a.categorylink:active{
     background-color:#7A991A;
 }
 
-div.menu a:active{
-    background-color:#7A991A;
+/*main {
+	position:relative;
+    width: 280px;
+    left: 0px;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 0; 
+}*/
+
+.clear{
+    width: 900px;
+/*    margin-top: 50px;*/
+    padding-top: 30px;
+    margin: auto;
+}
+
+div.mainRight{
+    float: right;
+}
+
+div.mainRight .rightBox{
+    width: 300px;
+    padding: 15px;
+    border: 2px solid gray;
+}
+
+div.rightBox .title span{
+    text-align:center;
+    display: inline-block;
+    width: 300px;
+    margin: 0 auto;
+}
+div.rightBox .line{
+    padding: 5px;
+}
+div.rightBox .line span{
+    text-align:right;
+    display: inline-block;
+    width: 100px;
+    margin: 0 auto;
+}
+div.rightBox .line input{
+    text-align:center;
+    display: inline-block;
+    width: 150px;
+    margin: 0 auto;
+}
+
+.clear .wenzi{
+    padding: 20px;
 }
