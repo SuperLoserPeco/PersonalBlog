@@ -5,10 +5,10 @@ var User = require('../models/User');
 var Category = require('../models/Category');
 var Content = require('../models/Content');
 
-//身份驗證
+//身份验证
 router.use(function(req, res, next){
 	if(!req.userInfo.isAdmin){
-		res.send('對不起 衹有管理員才能');
+		res.send('对不起 只有管理员才能登入');
 		return;
 	}
 	next();
@@ -234,6 +234,7 @@ router.get('/content', function(req, res){
 	})
 });
 
+//获得提交页面
 router.get('/content/add', function(req, res){
 	Category.find().sort({_id: -1}).then(function(categories){
 		res.render('admin/content_add', {
@@ -242,7 +243,7 @@ router.get('/content/add', function(req, res){
 		})
 	})
 });
-
+//进行提交操作
 router.post('/content/add', function(req, res){
 	if(req.body.category == ''){
 		res.render('admin/error', {
@@ -272,7 +273,6 @@ router.post('/content/add', function(req, res){
 			userInfo: req.userInfo,
 			message: '内容保存成功'
 		})
-
 	});
 });
 
@@ -304,7 +304,6 @@ router.get('/content/edit', function(req, res){
 		}
 	})
 });
-
 //分类的修改保存
 router.post('/content/edit', function(req, res){
 	var id = req.query.id || '';
