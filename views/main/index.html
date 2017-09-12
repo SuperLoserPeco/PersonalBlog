@@ -10,9 +10,18 @@
 <body>
 <!-- <nav> -->
 <div class="menu">
-	<ul>		
-		{%for category in categories%}
-		<li><a class="categorylink" href="/">{{category.name}}</a></li>
+	<ul>
+		{%if category == ''%}
+		<li><a class="categorylink" style="color:#98bf21" href="/">主页</a></li>
+		{%else%}
+		<li><a class="categorylink" style="color:#FFFFFF" href="/">主页</a></li>
+		{%endif%}
+		{%for cate in categories%}
+			{%if category == cate.id%}
+			<li><a class="categorylink" style="color:#98bf21" href="/?category={{cate.id}}">{{cate.name}}</a></li>
+			{%else%}
+			<li><a class="categorylink" style="color:#FFFFFF" href="/?category={{cate.id}}">{{cate.name}}</a></li>
+			{%endif%}
 		{%endfor%}
 	</ul>
 </div>
@@ -24,7 +33,7 @@
 		<div class="listBox">
 			<h3>{{content.title}}</h1>
 			<p class="colDefault">
-				作者：<span class="colInfo">{{content.username}}</span></br>
+				作者：<span class="colInfo">{{content.user.username}}</span></br>
 				时间：<span class="colInfo">{{content.addTime|date('Y年m月d日 H:i:s')}}</span></br>
 				阅读：<span class="colInfo">0</span></br>
 				评论：<span class="colInfo">0</span></br>
@@ -39,17 +48,19 @@
 					{%if page <= 1%}
 						<a href="javascript:;">没有上一页</a>
 					{%else%}
-						<a href="/?page={{page-1}}">上一页</a>
+						<a href="/?category={{category}}&page={{page-1}}">上一页</a>
 					{%endif%}
 				</li>
 				<li>
+					{%if pages > 0%}
 					<strong>{{page}} / {{pages}}</strong>
+					{%endif%}
 				</li>
 				<li class="next">
 					{%if page >= pages%}
 						<a href="javascript:;">没有下一页</a>
 					{%else%}
-						<a href="/?page={{page+1}}">下一页</a>
+						<a href="/?category={{category}}&page={{page+1}}">下一页</a>
 					{%endif%}
 				</li>
 			</ul>
@@ -89,48 +100,6 @@
 		</div>
 		{% endif %}
 	</div>
-<!-- 	<div class="wenzi" display="none">
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	  <p>Some text some text some text some text..</p>
-	 </div> -->
 </main>
 
 
